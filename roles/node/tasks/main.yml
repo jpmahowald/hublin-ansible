@@ -1,12 +1,7 @@
 ---
-- include: Debian.yml
-  when: ansible_os_family == "Debian"
+- include: "{{ansible_distribution}}.yml"
   tags: node
 
-- include: RedHat.yml
-  when: ansible_os_family == "RedHat"
-  tags: node
-      
 - name: Checking installed version of nodejs
   shell: /usr/bin/test "$({{nodejs_path}}bin/node -v 2> /dev/null)" = {{nodejs_version_tag}}
   register: wanted_version_installed
@@ -32,7 +27,7 @@
 
 - name: Compile and install nodejs {{nodejs_version_tag}}
   shell: ./configure --prefix={{nodejs_path}} && make && make install chdir={{nodejs_tmp_dir}}{{nodejs_file_tag}}
-  sudo: true
+  become: true
   when: node_build == true and wanted_version_installed.rc == 1
   tags: node
 

@@ -1,10 +1,5 @@
 ---
-- include: Debian.yml
-  when: ansible_os_family == "Debian"
-  tags: mongo
-
-- include: RedHat.yml
-  when: ansible_os_family == "RedHat"
+- include: "{{ansible_distribution}}.yml"
   tags: mongo
 
 - name: Upload SSL certificate

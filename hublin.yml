@@ -1,6 +1,7 @@
 ---
 ## Nginx is installed as dependencies of hublin role
-- hosts: hublin-master
+- hosts: tag_hublin-master
+  become: True
   vars_files:
     - config.yml
   roles:
@@ -11,7 +12,8 @@
     - node
     - hublin
 
-- hosts: hublin-slave
+- hosts: tag_hublin-slave
+  become: True
   vars_files:
     - config.yml
   roles:
@@ -19,7 +21,8 @@
     - coturn
     - hublin
 
-- hosts: hublin-slave-local
+- hosts: tag_hublin-slave-local
+  become: True
   connection: local
   vars_files:
     - config.yml
