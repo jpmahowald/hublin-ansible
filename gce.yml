@@ -1,0 +1,47 @@
+--- 
+
+# http://docs.ansible.com/ansible/latest/gce_module.html
+
+- name: Create instance
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    disk_size: 10
+    image: debian-9
+    machine_type: f1-micro
+
+  tasks:
+
+  - name: Launch instances
+    register: gce
+    gce:
+        state: present
+        instance_names: hublin-fun-6
+        tags: hublin-master
+        machine_type: "{{ machine_type }}"
+        image: "{{ image }}"
+        preemptible: True
+         
+  - name: Save host data
+    when: False
+    add_host:
+      hostname: "{{ item.public_ip }}"
+      groupname: gce_instances_ips
+    with_items: "{{ gce.instance_data }}"
+
+  - name: Wait for SSH for instances
+    when: False
+    wait_for:
+      delay: 1
+      host: "{{ item.public_ip }}"
+      port: 22
+      state: started
+      timeout: 30
+    with_items: "{{ gce.instance_data }}"
+
+  - meta: refresh_inventory
+
+- include: hublin.yml
+
