@@ -31,6 +31,14 @@
   npm:
     path: /srv/hublin
 
+- name: Install hublin dependencies somehow not in package.json
+  tags: hublin
+  become: False
+  npm:
+    name: "{{item}}"
+    path: /srv/hublin
+  with_items: "{{ nodejs_app_packages }}"
+
 - name: Install hublin frontend dependencies (bower)
   tags: hublin
   become: False

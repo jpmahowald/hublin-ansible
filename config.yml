@@ -24,7 +24,8 @@ node_build: false
 ### MONGODB CONFIGURATION ###
 
 # Hostname of mongodb server
-mongodb_host: "{{ master_server }}"
+#mongodb_host: "{{ master_server }}"
+mongodb_host: "localhost"
 
 # Port of mongodb server
 mongodb_port: 27017

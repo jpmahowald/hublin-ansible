@@ -18,7 +18,7 @@
     register: gce
     gce:
         state: present
-        instance_names: hublin-fun-8
+        instance_names: hublin-fun-9
         tags: hublin-master
         machine_type: "{{ machine_type }}"
         image: "{{ image }}"

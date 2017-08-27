@@ -15,6 +15,19 @@
     - Restart mongodb service
   tags: mongo
 
+- name: Allow mongodb to read certificates 
+  tags: mongo
+  file:
+    path: "/etc/letsencrypt/{{ item }}/"
+    state: directory
+    owner: mongodb
+    group: mongodb
+  with_items:
+    - archive
+    - live
+  notify:
+    - Restart mongodb service
+
 - name: Provide mongodb configuration file
   template: >
     src=mongodb.conf
