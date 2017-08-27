@@ -1,5 +1,6 @@
 ---
 certfile: "{{ slave_certfile }}"
 certfile_fullchain: "{{ slave_certfile_fullchain}}"
+certfile_keycert: "{{ slave_certfile_keycert }}"
 keyfile: "{{ slave_keyfile }}"
 cafile: "{{ slave_cafile }}"

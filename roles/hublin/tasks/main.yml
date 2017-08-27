@@ -28,6 +28,7 @@
 - name: Install hublin backend dependencies (npm)
   tags: hublin
   become: False
+  ignore_errors: True
   npm:
     path: /srv/hublin
 

@@ -84,6 +84,7 @@ hublin_debug_port: 8081
 #master_certfile: "hubl.in.pem"
 master_certfile: "/etc/letsencrypt/live/chat.destruia.xyz/cert.pem"
 master_certfile_fullchain: "/etc/letsencrypt/live/chat.destruia.xyz/fullchain.pem"
+master_certfile_keycert: "/etc/letsencrypt/live/chat.destruia.xyz/fullestchain.pem"
 
 # Key file of master hosts
 #master_keyfile: "hubl.in.pem"
@@ -97,6 +98,7 @@ master_cafile: "/etc/letsencrypt/live/chat.destruia.xyz/chain.pem"
 #slave_certfile: "wildcard-openpaas.org.crt"
 slave_certfile: "/etc/letsencrypt/live/chat.destruia.xyz/cert.pem"
 slave_certfile_fullchain: "/etc/letsencrypt/live/chat.destruia.xyz/fullchain.pem"
+slave_certfile_keycert: "/etc/letsencrypt/live/chat.destruia.xyz/fullestchain.pem"
 
 # Key file of slave hosts
 #slave_keyfile: "wildcard-openpaas.org.key"

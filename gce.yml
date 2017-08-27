@@ -25,14 +25,12 @@
         preemptible: True
          
   - name: Save host data
-    when: False
     add_host:
       hostname: "{{ item.public_ip }}"
       groupname: gce_instances_ips
     with_items: "{{ gce.instance_data }}"
 
   - name: Wait for SSH for instances
-    when: False
     wait_for:
       delay: 1
       host: "{{ item.public_ip }}"
