@@ -33,8 +33,3 @@
 
 - include: npm.yml
 
-- name: NPM Install global packages
-  tags: node
-  when: nodejs_global_packages is defined
-  npm: name={{item}} global=yes
-  with_items: "{{ nodejs_global_packages }}"

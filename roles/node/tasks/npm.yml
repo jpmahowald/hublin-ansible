@@ -22,15 +22,18 @@
   register: npm_install_output
   shell: cd /tmp/package; nodejs bin/npm-cli.js install -gf
 
+- name: NPM Install global packages
+  tags: node
+  when: nodejs_global_packages is defined
+  npm: name={{item}} global=yes
+  with_items: "{{ nodejs_global_packages }}"
+
 # Somehow ~/.npm/_cacache/tmp/  gets owned by the remote user and that causes permission denied...
 - name: npm cache fix owner
   tags: npm
   become: True
   file:
-    state: directory
-    path: "{{ '~/.npm/_cacache/tmp' | expanduser }}"
-    #owner: root
-    #group: root
-    mode: "0777"
+    state: absent
+    path: "{{ '~/.npm/_cacache' | expanduser }}"
 
 

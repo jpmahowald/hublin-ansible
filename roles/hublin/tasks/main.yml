@@ -7,26 +7,37 @@
   when: ansible_os_family == "RedHat"
   tags: hublin
 
+# Bit ugly making this writable, but I have permissions problems 
+# with npm cache when using become
+- name: Make app dir writable
+  become: True
+  file:
+    dest: /srv
+    state: directory
+    owner: "{{ ansible_user_uid }}"
+    group: "{{ ansible_user_gid }}"
+    mode: "0777"
+
 - name: Clone hublin repository
+  tags: hublin
+  become: False
   git: >
     repo=https://ci.open-paas.org/stash/scm/meet/meetings.git
     dest=/srv/hublin
-  tags: hublin
 
 - name: Install hublin backend dependencies (npm)
-  when: False
   tags: hublin
-  command: >
-    npm install
-    chdir=/srv/hublin
-    creates=/srv/hublin/npm-debug.log
+  become: False
+  npm:
+    path: /srv/hublin
 
 - name: Install hublin frontend dependencies (bower)
+  tags: hublin
+  become: False
   command: >
     bower install --allow-root
     chdir=/srv/hublin
     creates=/srv/hublin/frontend/components
-  tags: hublin
 
 - name: Deploy hublin init script
   copy: >
