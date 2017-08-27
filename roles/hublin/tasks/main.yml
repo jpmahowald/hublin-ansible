@@ -14,11 +14,12 @@
   tags: hublin
 
 - name: Install hublin backend dependencies (npm)
+  when: False
+  tags: hublin
   command: >
     npm install
     chdir=/srv/hublin
     creates=/srv/hublin/npm-debug.log
-  tags: hublin
 
 - name: Install hublin frontend dependencies (bower)
   command: >
