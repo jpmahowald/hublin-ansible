@@ -5,6 +5,7 @@
   vars_files:
     - config.yml
   roles:
+    - certs
     - hosts
     - mongodb
     - redis
@@ -17,6 +18,7 @@
   vars_files:
     - config.yml
   roles:
+    - certs
     - node
     - coturn
     - hublin
@@ -27,6 +29,7 @@
   vars_files:
     - config.yml
   roles:
+    - certs
     - node
     - coturn
     - hublin

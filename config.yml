@@ -14,7 +14,8 @@ config_version: 0.1
 ### MASTER SERVER CONFIGURATION ###
 
 # Hostname of master server
-master_server: "{{ groups['hublin-master'][0] }}"
+#master_server: "{{ groups['hublin-master'][0] }}"
+master_server: "chat.destruia.xyz"
 
 ### NODE CONFIGURATION ###
 # Build node from source (not needed anymore)
@@ -79,19 +80,27 @@ hublin_debug_port: 8081
 # You'll probably need to update these options on a per-host basis.
 
 # Certificate file of master hosts
-master_certfile: "hubl.in.pem"
+#master_certfile: "hubl.in.pem"
+master_certfile: "/etc/letsencrypt/live/chat.destruia.xyz/cert.pem"
+master_certfile_fullchain: "/etc/letsencrypt/live/chat.destruia.xyz/fullchain.pem"
 
 # Key file of master hosts
-master_keyfile: "hubl.in.pem"
+#master_keyfile: "hubl.in.pem"
+master_keyfile: "/etc/letsencrypt/live/chat.destruia.xyz/privkey.pem"
 
 # CA file of master hosts
-master_cafile: "GandiStandardSSLCA.crt"
+#master_cafile: "GandiStandardSSLCA.crt"
+master_cafile: "/etc/letsencrypt/live/chat.destruia.xyz/chain.pem"
 
 # Certificate file of slave hosts
-slave_certfile: "wildcard-openpaas.org.crt"
+#slave_certfile: "wildcard-openpaas.org.crt"
+slave_certfile: "/etc/letsencrypt/live/chat.destruia.xyz/cert.pem"
+slave_certfile_fullchain: "/etc/letsencrypt/live/chat.destruia.xyz/fullchain.pem"
 
 # Key file of slave hosts
-slave_keyfile: "wildcard-openpaas.org.key"
+#slave_keyfile: "wildcard-openpaas.org.key"
+slave_keyfile: "/etc/letsencrypt/live/chat.destruia.xyz/privkey.pem"
 
 # CA file of slave hosts
-slave_cafile: "GandiStandardSSLCA.crt"
+#slave_cafile: "GandiStandardSSLCA.crt"
+slave_cafile: "/etc/letsencrypt/live/chat.destruia.xyz/chain.pem"

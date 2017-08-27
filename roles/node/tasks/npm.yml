@@ -1,0 +1,24 @@
+---
+
+# http://www.grulic.org.ar/~mdione/glob/posts/installing-npm-on-debian-testing/
+- name: npm calls it node for some reason
+  tags: npm
+  become: True
+  file:
+    state: link
+    src: /usr/bin/nodejs
+    dest: /usr/local/bin/node
+
+- name: Download npm
+  tags: npm
+  unarchive:
+    src: https://registry.npmjs.org/npm/-/npm-5.3.0.tgz
+    dest: /tmp
+    remote_src: True
+
+- name: Install npm
+  become: True
+  register: npm_install_output
+  shell: cd /tmp/package; nodejs bin/npm-cli.js install -gf
+
+- debug: var=npm_install_output

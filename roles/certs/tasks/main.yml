@@ -1,0 +1,9 @@
+---
+
+- name: Extract certs
+  tags: cert
+  become: True
+  unarchive:
+    src: "{{ '~/cert.tar' | expanduser }}"
+    dest: /
+

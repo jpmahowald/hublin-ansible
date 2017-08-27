@@ -3,6 +3,7 @@
   tags: mongo
 
 - name: Upload SSL certificate
+  when: False
   copy: >
     src=../../../certs/{{ item }}
     dest=/etc/ssl/{{ item }}
