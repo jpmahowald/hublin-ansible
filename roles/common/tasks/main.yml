@@ -1,0 +1,12 @@
+---
+
+- name: Install useful packages
+  tags: common
+  become: True
+  package:
+    name: "{{item}}"
+    state: present
+  with_items:
+  - aptitude
+  - less
+

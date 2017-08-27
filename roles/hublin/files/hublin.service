@@ -1,0 +1,16 @@
+[Unit]
+Description=hublin video conference service
+Documentation=https://github.com/linagora/hublin
+
+[Service]
+Environment=NODE_ENV=production
+EnvironmentFile=-/etc/default/hublin
+ExecStart=nodejs
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=hublin
+#User=
+#Group=
+
+[Install]
+WantedBy=multi-user.target
